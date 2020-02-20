@@ -1,13 +1,13 @@
-import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
+import { port, webClient } from '../config/enviroments';
 
 import routes from './routes';
 
-dotenv.config();
 const app = express();
 
-app.use(cors({ origin: process.env.WEB_CLIENT_URL }));
+app.use(cors({ origin: webClient }));
+app.use(express.json());
 app.use(routes);
 
-app.listen(process.env.PORT);
+app.listen(port, () => console.log(`Listening on port ${port}`));
