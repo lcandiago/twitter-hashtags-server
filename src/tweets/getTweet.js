@@ -1,4 +1,4 @@
-import T from '../twit';
+import T from '../../config/twit';
 
 export default async (req, res) => {
   if (!req.query.hashtags) {
@@ -13,7 +13,8 @@ export default async (req, res) => {
       : `#${hashtags}`;
 
   const { data } = await T.get('search/tweets', {
-    q: hashtagQuery,
+    q: `${hashtagQuery} -filter:links -filter:replies -filter:retweets`,
+    tweet_mode: 'extended',
     count: 20,
   });
 
@@ -30,12 +31,17 @@ export default async (req, res) => {
   }
 
   const tweets = data.statuses.map(status => {
+    const { id, full_text, created_at } = status;
+    const { name, screen_name, profile_image_url_https } = status.user;
     return {
-      text: status.text,
+      id,
+      full_text,
       user: {
-        name: status.user.name,
-        screen_name: status.user.screen_name,
+        name,
+        screen_name,
+        profile_image_url_https,
       },
+      created_at,
     };
   });
 
