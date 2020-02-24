@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "The server API for Twitter-Hashtags",
   "scripts": {
+    "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "dev:debug": "nodemon --inspect src/server.js",
     "test": "jest"
+  },
+  "engines": {
+    "node": "12.x"
   },
   "author": "lcandiago",
   "license": "MIT",
