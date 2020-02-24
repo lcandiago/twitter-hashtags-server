@@ -1,9 +1,9 @@
-import { Router } from 'express';
+const { Router } = require('express');
 
-import getTweets from './tweets/getTweet';
+const getTweets = require('./tweets/getTweet');
 
 const routes = new Router();
 
 routes.get('/tweets', getTweets);
 
-export default routes;
+module.exports = routes;

@@ -1,4 +1,4 @@
-import Twit from 'twit';
+const Twit = require('twit');
 
 const {
   TWITTER_CONSUMER_KEY,
@@ -16,4 +16,4 @@ const T = new Twit({
   strictSSL: true, // optional - requires SSL certificates to be valid.
 });
 
-export default T;
+module.exports = T;

@@ -1,6 +1,6 @@
-import T from '../../config/twit';
+const T = require('../../config/twit');
 
-export default async (req, res) => {
+module.exports = async (req, res) => {
   if (!req.query.hashtags) {
     return res.status(400).json({ error: 'Informe uma Hashtag' });
   }
